@@ -8,6 +8,7 @@ describe Message do
   # {} Defines a block, used in stead of do end
   # validates_presence_of is from shoulda-matchers
   it {should validate_presence_of :body }
+  it {should belong_to :sender}
   
 
   

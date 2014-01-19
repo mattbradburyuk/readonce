@@ -26,13 +26,7 @@ describe "Messages" do
   
   describe "creating a message", type: :feature do
     before do
-      #new_user_registration_path is a devise path to the sign up page
-      visit new_user_registration_path
-      #fills in sign up
-      fill_in :user_email, with: 'me@example.com'
-      fill_in :user_password, with: 'password'
-      fill_in :user_password_confirmation, with: 'password'
-      click_button 'Sign up'
+      sign_up
     end
     
     it "redirects to the messages index" do      
@@ -57,7 +51,36 @@ describe "Messages" do
         page.should have_content "can't be blank"
       end
     end
+  end
+  
+  
+  # :feature is an acceptance test
+  # :request is an integration test
+  # :model or :controller or :view are unit tests
+  
+  describe "viewing a list of messages", type: :feature do
+    before do
+      #note overiding factory girl user on the fly
+      another_user = create(:user, email: 'another@example.com')
+      create(:message, sender: another_user, body: "I am not yours")
+      sign_up
+    end
     
+    it "doesn't show other people's messages" do
+      visit messages_path
+      page.should_not have_content "I am not Yours"
+    end
+  end
+  
+  def sign_up
+      #new_user_registration_path is a devise path to the sign up page
+      visit new_user_registration_path
+      #fills in sign up
+      fill_in :user_email, with: 'me@example.com'
+      fill_in :user_password, with: 'password'
+      fill_in :user_password_confirmation, with: 'password'
+      click_button 'Sign up'  
   
   end
+  
 end

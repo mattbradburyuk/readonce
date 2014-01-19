@@ -23,8 +23,8 @@ class MessagesController < ApplicationController
   def create
     
     # message_params is a method below 
-    
-    @message = Message.create(message_params)
+    # sets up the message with the sender association filled in
+    @message = current_user.messages.create(message_params)
     respond_with message, location: messages_url
   
     #note if create fails rerenders the new form
@@ -49,7 +49,7 @@ class MessagesController < ApplicationController
   helper_method :message
   
   def messages
-    @messages ||= Message.all
+    @messages ||= current_user.messages
   end
   helper_method :messages
   
