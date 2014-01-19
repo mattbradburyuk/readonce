@@ -19,4 +19,8 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara-webkit'
+  # shoulda-matches lots of matches
+  gem 'shoulda-matchers'
+  #defines a set of objects for testing eg a valid user
+  gem 'factory_girl_rails'
 end
