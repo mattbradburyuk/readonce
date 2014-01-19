@@ -12,8 +12,10 @@
 
 <%= form_for message do |f| %>
 
-<%= f.label :body %>
-<%= f.text_area :body %>
-<%= f.submit 'Send'%>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.label :receiver_id, 'Receiver' %>
+  <%= f.collection_select :receiver_id, receivers, :id, :email %>
+  <%= f.submit 'Send'%>
 
 <% end %>

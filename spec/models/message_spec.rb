@@ -9,6 +9,8 @@ describe Message do
   # validates_presence_of is from shoulda-matchers
   it {should validate_presence_of :body }
   it {should belong_to :sender}
+  it {should belong_to :receiver}
+  it {should validate_presence_of :receiver_id }
   
 
   

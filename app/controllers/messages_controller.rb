@@ -50,7 +50,14 @@ class MessagesController < ApplicationController
   
   def messages
     @messages ||= current_user.messages
+  
+    #consider that there are usually users, hence when showing collections should be for current_user 
+    #instead of messages.find params[:id] use current_user.messages.find params[:id]
   end
   helper_method :messages
   
+  def receivers
+    @receivers ||= User.all
+  end
+  helper_method :receivers
 end
