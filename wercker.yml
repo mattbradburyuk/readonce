@@ -20,6 +20,6 @@ build:
         - rails-database-yml
 
         # Add more steps here:
-        script:
+        - script:
             name: rspec
             code: bundle exec rspec
